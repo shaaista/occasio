@@ -92,24 +92,6 @@ export default function Timeline() {
 
     const ctx = gsap.context(() => {
 
-      // ── Section entrance: scale up, rotate in, fade from below ────────
-      gsap.fromTo(
-        section,
-        { scale: 0.85, rotate: 5, opacity: 0 },
-        {
-          scale: 1,
-          rotate: 0,
-          opacity: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'top 20%',
-            scrub: true,
-          },
-        }
-      );
-
       // ── Set all initial hidden states ─────────────────────────────────
 
       gsap.set(headingRef.current, { opacity: 0, y: 30 });

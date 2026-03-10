@@ -1,49 +1,49 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { TextEffect } from '@/components/ui/text-effect';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const blurSlideVariants = {
-  container: {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.018 },
-    },
-    exit: {
-      transition: { staggerChildren: 0.012, staggerDirection: 1 },
-    },
-  },
-  item: {
-    hidden: {
-      opacity: 0,
-      filter: 'blur(10px) brightness(0%)',
-      y: 0,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px) brightness(100%)',
-      transition: { duration: 0.4 },
-    },
-    exit: {
-      opacity: 0,
-      y: -28,
-      filter: 'blur(10px) brightness(0%)',
-      transition: { duration: 0.35 },
-    },
-  },
-};
+const TITLE_WORDS = 'Once the invite is sent, the scene comes next.'.split(' ');
+const DESC_WORDS  = 'Now the space takes shape — décor, gifts, and details that make it feel intentional. Everything stays cohesive. Everything stays easy.'.split(' ');
+const ALL_WORDS   = [...TITLE_WORDS, ...DESC_WORDS];
+
+function RevealWord({
+  word,
+  progress,
+  range,
+}: {
+  word: string;
+  progress: MotionValue<number>;
+  range: [number, number];
+}) {
+  const opacity = useTransform(progress, range, [0, 1]);
+  return (
+    <span className="relative inline-block mx-[0.18em]">
+      <span className="absolute opacity-30">{word}</span>
+      <motion.span style={{ opacity }}>{word}</motion.span>
+    </span>
+  );
+}
 
 export default function ChapterTransition() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const lineTopRef = useRef<HTMLDivElement>(null);
+  const sectionRef    = useRef<HTMLElement>(null);
+  const lineTopRef    = useRef<HTMLDivElement>(null);
   const lineBottomRef = useRef<HTMLDivElement>(null);
-  const chapterRef = useRef<HTMLSpanElement>(null);
+  const chapterRef    = useRef<HTMLSpanElement>(null);
 
-  const [trigger, setTrigger] = useState(false);
+  // Scroll progress over the whole section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 40%', 'end 60%'],
+  });
+
+  const titleCount = TITLE_WORDS.length;
+  // Give title 50% of the scroll range regardless of word count,
+  // so heading reveals noticeably before the description starts.
+  const TITLE_SHARE = 0.5;
+  const totalCount  = ALL_WORDS.length;
 
   useEffect(() => {
     gsap.set([lineTopRef.current, lineBottomRef.current], { scaleY: 0 });
@@ -56,7 +56,6 @@ export default function ChapterTransition() {
         end: 'bottom 5%',
 
         onEnter: () => {
-          setTrigger(true);
           gsap.to([lineTopRef.current, lineBottomRef.current], {
             scaleY: 1, duration: 0.9, ease: 'power3.out',
           });
@@ -66,7 +65,6 @@ export default function ChapterTransition() {
         },
 
         onLeave: () => {
-          setTrigger(false);
           gsap.to([lineTopRef.current, lineBottomRef.current], {
             scaleY: 0, duration: 0.5, ease: 'power3.in',
           });
@@ -76,7 +74,6 @@ export default function ChapterTransition() {
         },
 
         onEnterBack: () => {
-          setTrigger(true);
           gsap.to([lineTopRef.current, lineBottomRef.current], {
             scaleY: 1, duration: 0.9, ease: 'power3.out',
           });
@@ -86,7 +83,6 @@ export default function ChapterTransition() {
         },
 
         onLeaveBack: () => {
-          setTrigger(false);
           gsap.to([lineTopRef.current, lineBottomRef.current], {
             scaleY: 0, duration: 0.5, ease: 'power3.in',
           });
@@ -123,31 +119,41 @@ export default function ChapterTransition() {
           CHAPTER II
         </span>
 
-        {/* Title */}
-        <div className="mb-8 max-w-4xl min-h-[1.2em]">
-          <TextEffect
-            per='word'
-            as='h2'
-            variants={blurSlideVariants}
-            trigger={trigger}
-            className="text-3xl md:text-5xl font-serif-exp text-white leading-tight"
-          >
-            Once the invite is sent, the scene comes next.
-          </TextEffect>
+        {/* Title — scroll-driven word reveal, same font/size as before */}
+        <div className="mb-8 max-w-4xl">
+          <h2 className="text-3xl md:text-5xl font-serif-exp text-white leading-tight flex flex-wrap justify-center">
+            {TITLE_WORDS.map((word, i) => {
+              const start = (i / titleCount) * TITLE_SHARE;
+              const end   = ((i + 1) / titleCount) * TITLE_SHARE;
+              return (
+                <RevealWord
+                  key={i}
+                  word={word}
+                  progress={scrollYProgress}
+                  range={[start, end]}
+                />
+              );
+            })}
+          </h2>
         </div>
 
-        {/* Description */}
-        <div className="min-h-[3em]">
-          <TextEffect
-            per='word'
-            as='p'
-            variants={blurSlideVariants}
-            trigger={trigger}
-            delay={0.3}
-            className="text-gray-400 font-display text-lg leading-relaxed max-w-xl"
-          >
-            Now the space takes shape — décor, gifts, and details that make it feel intentional. Everything stays cohesive. Everything stays easy.
-          </TextEffect>
+        {/* Description — scroll-driven word reveal, same font/size as before */}
+        <div>
+          <p className="text-gray-400 font-display text-lg leading-relaxed max-w-xl flex flex-wrap justify-center">
+            {DESC_WORDS.map((word, i) => {
+              const descCount = DESC_WORDS.length;
+              const start = TITLE_SHARE + (i / descCount) * (1 - TITLE_SHARE);
+              const end   = TITLE_SHARE + ((i + 1) / descCount) * (1 - TITLE_SHARE);
+              return (
+                <RevealWord
+                  key={i}
+                  word={word}
+                  progress={scrollYProgress}
+                  range={[start, end]}
+                />
+              );
+            })}
+          </p>
         </div>
 
         {/* Bottom line */}

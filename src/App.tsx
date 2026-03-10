@@ -34,9 +34,19 @@ function App() {
 
     ScrollTrigger.refresh();
 
+    // Freeze scroll for 2 s after hero exits so Timeline stays static on reveal
+    const handleHeroExit = () => {
+      const l = lenisRef.current?.lenis;
+      if (!l) return;
+      l.stop();
+      setTimeout(() => l.start(), 500);
+    };
+    window.addEventListener('hero-exit', handleHeroExit);
+
     return () => {
       if (lenis) lenis.off('scroll', ScrollTrigger.update);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.removeEventListener('hero-exit', handleHeroExit);
     };
   }, []);
 
