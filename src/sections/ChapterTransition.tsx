@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TITLE_WORDS = 'Once the invite is sent, the scene comes next.'.split(' ');
 const DESC_WORDS  = 'Now the space takes shape — décor, gifts, and details that make it feel intentional. Everything stays cohesive. Everything stays easy.'.split(' ');
-const ALL_WORDS   = [...TITLE_WORDS, ...DESC_WORDS];
 
 function RevealWord({
   word,
