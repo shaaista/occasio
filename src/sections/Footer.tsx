@@ -139,7 +139,7 @@ export default function Footer() {
           ref={footerBottomRef}
           className="mt-24 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-mono"
         >
-          <p>© 2023 OCCASIO. THE ART OF CELEBRATION.</p>
+          <p>© 2023 Moments & Memories. THE ART OF CELEBRATION.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-primary transition-colors">
               Instagram

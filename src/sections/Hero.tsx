@@ -4,14 +4,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import InfiniteGallery from '@/components/ui/3d-gallery-photography';
 
 const heroGalleryImages = [
-  { src: 'https://static.wixstatic.com/media/e64ad3_954de0a962584b549ace8ee22d8555cb~mv2.jpeg/v1/fit/w_960,h_962,q_90,enc_avif,quality_auto/e64ad3_954de0a962584b549ace8ee22d8555cb~mv2.jpeg', alt: 'Reception Decor 1' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_e49609a6b68b4a718eb9009baca15c26~mv2.jpeg/v1/fit/w_960,h_634,q_90,enc_avif,quality_auto/e64ad3_e49609a6b68b4a718eb9009baca15c26~mv2.jpeg', alt: 'Reception Decor 2' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_7868060089754a74b7376491c2cb8592~mv2.jpg/v1/fit/w_960,h_540,q_90,enc_avif,quality_auto/e64ad3_7868060089754a74b7376491c2cb8592~mv2.jpg', alt: 'Reception Decor 3' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_dacab933ca7647b6b866212ae4fe0f39~mv2.jpg/v1/fit/w_960,h_640,q_90,enc_avif,quality_auto/e64ad3_dacab933ca7647b6b866212ae4fe0f39~mv2.jpg', alt: 'Wedding Decor 1' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_c5e860385c6f48818d64275f032fc122~mv2.jpeg/v1/fit/w_960,h_960,q_90,enc_avif,quality_auto/e64ad3_c5e860385c6f48818d64275f032fc122~mv2.jpeg', alt: 'Event Decor 1' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_e549610bf87b44e1acfb05813943e87f~mv2.jpg/v1/fit/w_960,h_635,q_90,enc_avif,quality_auto/e64ad3_e549610bf87b44e1acfb05813943e87f~mv2.jpg', alt: 'Reception Decor 4' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_eac1534f86034ece95a8a26a504220ed~mv2.jpg/v1/fit/w_960,h_636,q_90,enc_avif,quality_auto/e64ad3_eac1534f86034ece95a8a26a504220ed~mv2.jpg', alt: 'Wedding Decor 2' },
-  { src: 'https://static.wixstatic.com/media/e64ad3_336a8ba0af1a40db92edf9d5c016d952~mv2.jpeg/v1/fit/w_960,h_724,q_90,enc_avif,quality_auto/e64ad3_336a8ba0af1a40db92edf9d5c016d952~mv2.jpeg', alt: 'Event Decor 2' },
+  { src: 'https://images.pexels.com/photos/1484988/pexels-photo-1484988.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Vibrant Indian bride with colorful smoke' },
+  { src: 'https://images.pexels.com/photos/3447328/pexels-photo-3447328.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Holi celebration with colorful powders' },
+  { src: 'https://images.pexels.com/photos/725458/pexels-photo-725458.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'South Asian bride in traditional attire' },
+  { src: 'https://images.pexels.com/photos/7686379/pexels-photo-7686379.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Diwali celebration with sparklers' },
+  { src: 'https://images.pexels.com/photos/2060240/pexels-photo-2060240.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Colorful Indian wedding ceremony at night' },
+  { src: 'https://images.pexels.com/photos/974320/pexels-photo-974320.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Joyful Holi festival crowd' },
+  { src: 'https://images.pexels.com/photos/5759215/pexels-photo-5759215.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Indian couple at wedding ceremony' },
+  { src: 'https://images.pexels.com/photos/1707446/pexels-photo-1707446.jpeg?auto=compress&cs=tinysrgb&w=960&fit=crop&h=640', alt: 'Couple in colorful traditional attire' },
 ];
 
 gsap.registerPlugin(ScrollTrigger);
@@ -99,7 +99,7 @@ export default function Hero() {
             className="font-serif-exp text-[8vw] leading-none tracking-tighter text-center"
           >
             <span className="block italic text-white/80">
-              Occasio
+              Moments & Memories
             </span>
           </h1>
         </div>

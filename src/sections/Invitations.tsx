@@ -11,7 +11,8 @@ const invitationCards = [
     id: 1,
     title: 'The Wedding Suite',
     subtitle: 'DIGITAL ONLY',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBHUVjNIb2L_BZwEul4KsoV7Z7NgS7SS_bJTaEkUar6gdCojVUuEq4_yRz0dq-ZOHTQ52v116AzFmMM_AtD2YsKVRyQM9NNBgW-95L1jejtWP3UcvfV7M-Uea0Rtat1tzciAEmV5j5e6AVaUB0FfapGqagA2wX_N4-9wO9Av4MXBqwyD3oPlhGzwNUB4ZdzlYhg61FAOfGr_qYCbO97K1Fd0urrv1urrOR9WI0dz13SeeWrMSGaK8cIR-ZN5TCv9d2l6t2BXiccOuoX',
+    image: '/wedding.jpeg',
+    objectPosition: 'center 15%',
     borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%',
     offset: 'mt-12',
   },
@@ -19,7 +20,8 @@ const invitationCards = [
     id: 2,
     title: 'Birthday Glow',
     subtitle: 'HYBRID SUITE',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA7pZ2qyMnKbcW2nl-i3a9x9e7Br7eAMzcAEbIMOXNvaaIcOukOGA9YZiD1ZHgdS6-2mtL317u0lZh0-W-5aDI-ErBuTCxaoA_zRv8z-V9ViHqeDTvQrCFRN95Lt-Vgmb805VvqJrwVYfzE7EjUYmntL5_pHA_gUfdqJbFD5yUTu2MG-Wu1saiAJCtoFfdwBMADH5QN8tUiMylQ9pCr1GRtNoePHY64eZLnQYTiEigr1JJneadi_TmZ5kOt0wKPZOESvZey-_ohH_Sr',
+    image: '/bday.jpeg',
+    objectPosition: 'center 18%',
     borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
     offset: '-mt-12 md:-mt-24',
   },
@@ -27,7 +29,8 @@ const invitationCards = [
     id: 3,
     title: 'Baby Shower Bloom',
     subtitle: 'PRINT & DIGITAL',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDqfCXMpLOjKK1JgPdCa7-RJpNLQ_52mfy0md2RO836WiymsojqoQ2QaEuBJDRUM-ofV4QgHTwlU-8h0SjDiSaxFmjQnaUXzoDEZomSrMsU_Kp9YSaxpItd1cI7M0Lz3biNX7fYZKGqqhEIOZaTbRvB276khMmd9hOMcO75G2CbGuAHsD8VzdMiwCcm_tVYyKQYDBJqAUqqVIQ3y1vb0jLTZox2Cx80AHrMO_7JlRBenZuHOD6Tcu1MqZrvtqiuBsynoKh5FcfvQ5fM',
+    image: '/babyshower.jpeg',
+    objectPosition: 'center center',
     borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
     offset: 'mt-8',
   },
@@ -142,6 +145,7 @@ export default function Invitations() {
                   src={card.image}
                   alt={card.title}
                   className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+                  style={{ objectPosition: card.objectPosition }}
                 />
               </Tilt>
 
