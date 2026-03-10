@@ -43,7 +43,6 @@ export default function ChapterTransition() {
   // Give title 50% of the scroll range regardless of word count,
   // so heading reveals noticeably before the description starts.
   const TITLE_SHARE = 0.5;
-  const totalCount  = ALL_WORDS.length;
 
   useEffect(() => {
     gsap.set([lineTopRef.current, lineBottomRef.current], { scaleY: 0 });
